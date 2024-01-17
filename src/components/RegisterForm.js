@@ -1,9 +1,12 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { validate } from "../utils/validate";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 const RegisterForm = ({ navigateToSignInForm }) => {
+  const navigate = useNavigate();
+
   const email = useRef(null);
   const password = useRef(null);
 
@@ -24,6 +27,7 @@ const RegisterForm = ({ navigateToSignInForm }) => {
             // Signed up
             const user = userCredential.user;
             console.log(user);
+            navigate("/browse");
             // ...
           })
           .catch((error) => {
